@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>4b5e3c8d-732c-43b5-88df-68ef273b4526</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PersonDiary.LifeEvent.Business\PersonDiary.LifeEvent.Business.csproj" />
+    <ProjectReference Include="..\PersonDiary.LifeEvent.DataAccess.Ef\PersonDiary.LifeEvent.DataAccess.Ef.csproj" />
+    <ProjectReference Include="..\PersonDiary.LifeEvent.Domain\PersonDiary.LifeEvent.Domain.csproj" />
+  </ItemGroup>
+
+
+</Project>

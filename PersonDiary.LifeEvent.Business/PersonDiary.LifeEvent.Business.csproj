@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <LangVersion>8</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PersonDiary.LifeEvent.Domain\PersonDiary.LifeEvent.Domain.csproj" />
+      <ProjectReference Include="..\PersonDiary.LifeEvent.Dto\PersonDiary.LifeEvent.Dto.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="8.1.1" />
+    </ItemGroup>
+
+</Project>
