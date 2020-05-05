@@ -48,7 +48,7 @@ namespace LifeEventDiary.BusinessLogic.Test
         {
             var suffix = DateTime.Now.ToString("dd.MM.yyyy_mm_HH_ss");
 
-            var resp = await  lifeEventService.CreateAsync(new UpdateLifeEventRequest()
+            var resp = await  lifeEventService.CreateAsync(new UpdateLifeEventRequestDto()
             {
                 LifeEvent = new LifeEventDto()
                 {
@@ -63,11 +63,11 @@ namespace LifeEventDiary.BusinessLogic.Test
         {
             var lifeEventServiceTmp = serviceProvider.GetService<ILifeEventService>();
             const string updated = "_Updated";
-            var lifeEventLast = await lifeEventServiceTmp.GetItemsAsync(new GetLifeEventsRequest() { PageSize = RepositoryDefaults.PageSize });
+            var lifeEventLast = await lifeEventServiceTmp.GetItemsAsync(new GetLifeEventsRequestDto() { PageSize = RepositoryDefaults.PageSize });
             lifeEventLast.LifeEvents.Last().Name += updated;
 
-            await lifeEventServiceTmp.UpdateAsync(new UpdateLifeEventRequest() { LifeEvent = lifeEventLast.LifeEvents.Last() });
-            var lifeEventCheck = await lifeEventServiceTmp.GetItemAsync(new GetLifeEventRequest() { Id = lifeEventLast.LifeEvents.Last().Id });
+            await lifeEventServiceTmp.UpdateAsync(new UpdateLifeEventRequestDto() { LifeEvent = lifeEventLast.LifeEvents.Last() });
+            var lifeEventCheck = await lifeEventServiceTmp.GetItemAsync(new GetLifeEventRequestDto() { Id = lifeEventLast.LifeEvents.Last().Id });
             Assert.IsTrue(lifeEventCheck.LifeEvent.Name.Contains(updated));
         }
         
@@ -75,8 +75,8 @@ namespace LifeEventDiary.BusinessLogic.Test
         public async Task Delete()
         {
             await CreateAsync();
-            var lifeEventLast = await lifeEventService.GetItemsAsync(new GetLifeEventsRequest() { PageSize = RepositoryDefaults.PageSize });
-            await lifeEventService.DeleteAsync(new DeleteLifeEventRequest() { Id = lifeEventLast.LifeEvents.Last().Id });
+            var lifeEventLast = await lifeEventService.GetItemsAsync(new GetLifeEventsRequestDto() { PageSize = RepositoryDefaults.PageSize });
+            await lifeEventService.DeleteAsync(new DeleteLifeEventRequestDto() { Id = lifeEventLast.LifeEvents.Last().Id });
             Assert.IsNull(await repoLifeEvent.GetItemAsync(lifeEventLast.LifeEvents.Last().Id));
         }
         
@@ -85,7 +85,7 @@ namespace LifeEventDiary.BusinessLogic.Test
         {
             var cntRepoRes = await repoLifeEvent.GetItemsAsync(0, RepositoryDefaults.PageSize);
             var cntRepo = cntRepoRes.ToList().Count;
-            var cntModelRes = await lifeEventService.GetItemsAsync(new GetLifeEventsRequest()
+            var cntModelRes = await lifeEventService.GetItemsAsync(new GetLifeEventsRequestDto()
                 {PageSize = RepositoryDefaults.PageSize});
             var cntModel = cntModelRes.LifeEvents.Count;
             

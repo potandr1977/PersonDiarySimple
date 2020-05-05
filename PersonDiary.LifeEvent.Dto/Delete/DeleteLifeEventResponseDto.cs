@@ -2,8 +2,7 @@
 
 namespace PersonDiary.LifeEvent.Dto
 {
-    public class DeleteLifeEventRequest : Request
+    public class DeleteLifeEventResponseDto : Response<DeleteLifeEventResponseDto>
     {
-        public int Id { get; set; }
     }
 }

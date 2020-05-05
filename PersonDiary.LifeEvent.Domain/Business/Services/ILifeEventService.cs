@@ -5,16 +5,18 @@ namespace PersonDiary.LifeEvent.Domain.Business.Services
 {
     public interface ILifeEventService
     {
-        Task<GetLifeEventsResponse> GetItemsAsync(GetLifeEventsRequest request);
+        Task<GetLifeEventsResponseDto> GetItemsAsync(GetLifeEventsRequestDto request);
 
-        Task<GetLifeEventsResponse> GetItemsByPersonIdAsync(GetLifeEventsByPersonIdRequest request);
+        Task<GetLifeEventsResponseDto> GetItemsByPersonIdAsync(GetLifeEventsByPersonIdRequest request);
 
-        Task<GetLifeEventResponse> GetItemAsync(GetLifeEventRequest request);
+        Task<GetLifeEventResponseDto> GetItemAsync(GetLifeEventRequestDto request);
 
-        Task<UpdateLifeEventResponse> CreateAsync(UpdateLifeEventRequest request);
+        Task<UpdateLifeEventResponseDto> CreateAsync(UpdateLifeEventRequestDto request);
         
-        Task<UpdateLifeEventResponse> UpdateAsync(UpdateLifeEventRequest request);
+        Task<UpdateLifeEventResponseDto> UpdateAsync(UpdateLifeEventRequestDto request);
         
-        Task<DeleteLifeEventResponse> DeleteAsync(DeleteLifeEventRequest request);
+        Task<DeleteLifeEventResponseDto> DeleteAsync(DeleteLifeEventRequestDto request);
+
+        Task PersonCreatedAsync(UpdateLifeEventRequestDto request);
     }
 }

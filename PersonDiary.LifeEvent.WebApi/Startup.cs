@@ -5,12 +5,21 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PersonDiary.Contexts;
+using PersonDiary.Infrastructure.ApiClient.Helpers;
 using PersonDiary.Infrastructure.Cache.Redis;
+using PersonDiary.Infrastructure.Domain.ApiClient;
+using PersonDiary.Infrastructure.Domain.EventBus.Events;
+using PersonDiary.Infrastructure.Domain.HttpApiClients;
+using PersonDiary.Infrastructure.HttpApiClient;
+using PersonDiary.Infrastructure.HttpApiClient.Helpers;
 using PersonDiary.Infrastucture.Domain.DataAccess;
 using PersonDiary.Lifeevent.Cache;
+using PersonDiary.Lifeevent.EventBus;
+using PersonDiary.LifeEvent.ApiClient;
 using PersonDiary.LifeEvent.Business;
 using PersonDiary.LifeEvent.Domain.Business.Services;
 using PersonDiary.LifeEvent.Domain.DataAccess.Dao;
+using PersonDiary.LifeEvent.Dto;
 using PersonDiary.LifeEvent.Infrastructure.Domain;
 using PersonDiary.LifeEvent.Mapping;
 using PersonDiary.LifeEvent.Repositories;
@@ -37,7 +46,11 @@ namespace PersonDiary.LifeEvent.WebApi
             .AddTransient<ILifeEventRepository,LifeEventRepository>()
             .AddTransient<IUnitOfWork, UnitOfWork>()
             .AddTransient<ILifeEventDao,LifeEventDao>()
-            .AddTransient<ILifeEventService, LifeEventService>();
+            .AddTransient<ILifeEventService, LifeEventService>()
+            .AddSingleton<IUriCreator, UriCreator>()
+            .AddSingleton<IResponseParser, ResponseParser>()
+            .AddSingleton<IHttpRequestExecutor, HttpRequestExecutor>()
+            .AddSingleton<ILifeEventApiClient, LifeEventApiClient>(); 
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
@@ -47,9 +60,21 @@ namespace PersonDiary.LifeEvent.WebApi
             var mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            /*
-            private readonly ILifeEventSubscriberFactory lifeEventSubscriberFactory;
+           
             services.AddSingleton<ILifeEventSubscriberFactory, LifeEventSubscriberFactory>();
+           
+
+            services.AddControllers();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(
+            IApplicationBuilder app, 
+            IWebHostEnvironment env, 
+            ILifeEventSubscriberFactory lifeEventSubscriberFactory,
+            ILifeEventApiClient lifeEventApiClient
+            )
+        {
             var subscriber = lifeEventSubscriberFactory.Create<PersonCreate>();
 
             subscriber.Subscribe(lifeEventCreate =>
@@ -57,18 +82,10 @@ namespace PersonDiary.LifeEvent.WebApi
 
                 lifeEventApiClient.PersonCreatedAsync(new PersonCreateDto()
                 {
-                    Id = lifeEventCreate.Id
+                    PersonId = lifeEventCreate.Id
                 }); //call and forget
-
-                this.logger.LogInformation($"LifeEventCreate event received, id = {lifeEventCreate.Id}");
             });
-            */
-            services.AddControllers();
-        }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

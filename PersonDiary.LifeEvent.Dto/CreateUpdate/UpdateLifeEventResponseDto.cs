@@ -2,7 +2,7 @@
 
 namespace PersonDiary.LifeEvent.Dto
 {
-    public class UpdateLifeEventResponse : Response<UpdateLifeEventResponse>
+    public class UpdateLifeEventResponseDto : Response<UpdateLifeEventResponseDto>
     {
     }
 }

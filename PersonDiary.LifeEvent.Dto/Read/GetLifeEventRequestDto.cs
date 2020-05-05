@@ -2,7 +2,7 @@
 
 namespace PersonDiary.LifeEvent.Dto
 {
-    public class GetLifeEventRequest : Request
+    public class GetLifeEventRequestDto : Request
     {
         public int Id { get; set; }
     }

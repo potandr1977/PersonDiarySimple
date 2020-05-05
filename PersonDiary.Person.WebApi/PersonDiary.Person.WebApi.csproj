@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +16,7 @@
     <ProjectReference Include="..\PersonDiary.Person.Business\PersonDiary.Person.Business.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.DataAccess.Ef\PersonDiary.Person.DataAccess.Ef.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.Domain\PersonDiary.Person.Domain.csproj" />
+    <ProjectReference Include="..\PersonDiary.Person.EventBus\PersonDiary.Person.EventBus.csproj" />
   </ItemGroup>
 
 

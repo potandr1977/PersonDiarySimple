@@ -27,7 +27,7 @@ namespace PersonDiary.LifeEvent.Business
             this.cacheStore = cacheStore;
         }
 
-        public async Task<GetLifeEventsResponse> GetItemsAsync(GetLifeEventsRequest request)
+        public async Task<GetLifeEventsResponseDto> GetItemsAsync(GetLifeEventsRequestDto request)
         {
             if (request == null)
             {
@@ -39,11 +39,11 @@ namespace PersonDiary.LifeEvent.Business
 
             if (cacheValue != null)
             {
-                var cachedResponse = JsonConvert.DeserializeObject<GetLifeEventsResponse>(cacheValue);
+                var cachedResponse = JsonConvert.DeserializeObject<GetLifeEventsResponseDto>(cacheValue);
                 return cachedResponse;
             }
 
-            var response = new GetLifeEventsResponse();
+            var response = new GetLifeEventsResponseDto();
 
             try
             {
@@ -62,14 +62,14 @@ namespace PersonDiary.LifeEvent.Business
 
         }
         
-        public async Task<GetLifeEventsResponse> GetItemsByPersonIdAsync(GetLifeEventsByPersonIdRequest request)
+        public async Task<GetLifeEventsResponseDto> GetItemsByPersonIdAsync(GetLifeEventsByPersonIdRequest request)
         {
             if (request == null)
             {
                 throw new ArgumentNullException("GetLifeEventListRequest  is invalid");
             }
 
-            var resp = new GetLifeEventsResponse();
+            var resp = new GetLifeEventsResponseDto();
             try
             {
                 var lifeEvents = await lifeEventDao.GetItemsByPersonIdAsync(request.personId).ConfigureAwait(false);
@@ -84,14 +84,14 @@ namespace PersonDiary.LifeEvent.Business
         }
 
 
-        public async Task<GetLifeEventResponse> GetItemAsync(GetLifeEventRequest request)
+        public async Task<GetLifeEventResponseDto> GetItemAsync(GetLifeEventRequestDto request)
         {
             if (request == null)
             {
                 throw new ArgumentNullException("LifeEventModel model GetLifeEventRequest  is invalid");
             }
 
-            var resp = new GetLifeEventResponse();
+            var resp = new GetLifeEventResponseDto();
             
             try
             {
@@ -104,14 +104,14 @@ namespace PersonDiary.LifeEvent.Business
             return resp;
         }
       
-        public async Task<UpdateLifeEventResponse> CreateAsync(UpdateLifeEventRequest request)
+        public async Task<UpdateLifeEventResponseDto> CreateAsync(UpdateLifeEventRequestDto request)
         {
             if (request == null)
             {
                 throw new ArgumentNullException("LifeEventModel model UpdateLifeEventRequest  is invalid");
             }
 
-            var resp = new UpdateLifeEventResponse();
+            var resp = new UpdateLifeEventResponseDto();
             
             try
             {
@@ -125,14 +125,14 @@ namespace PersonDiary.LifeEvent.Business
             return resp;
         }
         
-        public async Task<UpdateLifeEventResponse> UpdateAsync(UpdateLifeEventRequest request)
+        public async Task<UpdateLifeEventResponseDto> UpdateAsync(UpdateLifeEventRequestDto request)
         {
             if (request == null)
             {
                 throw new ArgumentNullException("LifeEventModel model UpdateLifeEventRequest  is invalid");
             }
 
-            var resp = new UpdateLifeEventResponse();
+            var resp = new UpdateLifeEventResponseDto();
             
             try
             {
@@ -147,14 +147,14 @@ namespace PersonDiary.LifeEvent.Business
         }
         
        
-        public async Task<DeleteLifeEventResponse> DeleteAsync(DeleteLifeEventRequest request)
+        public async Task<DeleteLifeEventResponseDto> DeleteAsync(DeleteLifeEventRequestDto request)
         {
             if (request == null)
             {
                 throw new ArgumentNullException("LifeEventModel model DeleteLifeEventRequest  is invalid");
             }
 
-            var resp = new DeleteLifeEventResponse();
+            var resp = new DeleteLifeEventResponseDto();
             
             try
             {
@@ -167,7 +167,14 @@ namespace PersonDiary.LifeEvent.Business
             return resp;
         }
 
-        private static string GetCacheKey(GetLifeEventsRequest request)
+        public Task PersonCreatedAsync(UpdateLifeEventRequestDto request)
+        {
+            cacheStore.Clear();
+
+            return Task.CompletedTask;
+        }
+
+        private static string GetCacheKey(GetLifeEventsRequestDto request)
         {
             return $"pageNo_{request.PageNo}_pageSize_{request.PageSize}";
         }
