@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using PersonDiary.Contexts;
+using PersonDiary.Infrastructure.Cache.Redis;
+using PersonDiary.Infrastucture.Domain.DataAccess;
+using PersonDiary.Lifeevent.Cache;
 using PersonDiary.LifeEvent.Business;
 using PersonDiary.LifeEvent.Domain.Business.Services;
 using PersonDiary.LifeEvent.Domain.DataAccess.Dao;
@@ -36,6 +32,8 @@ namespace PersonDiary.LifeEvent.WebApi
         {
             services
             .AddTransient(typeof(SqlContext))
+            .AddSingleton<IDbExecutorCache, DbExecutorRedis>()
+            .AddSingleton<LifeEventCacheStore, LifeEventCacheStore>()
             .AddTransient<ILifeEventRepository,LifeEventRepository>()
             .AddTransient<IUnitOfWork, UnitOfWork>()
             .AddTransient<ILifeEventDao,LifeEventDao>()

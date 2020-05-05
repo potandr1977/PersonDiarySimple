@@ -63,9 +63,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.Lifeevent.Event
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.Person.EventBus", "PersonDiary.Person.EventBus\PersonDiary.Person.EventBus.csproj", "{332E4A40-EAB2-41E9-8C95-993244F1DD05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonDiary.GateWay.ApiClient", "PersonDiary.GateWay.ApiClient\PersonDiary.GateWay.ApiClient.csproj", "{3A151807-4C32-49A2-BC5F-7ED95111CBDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.GateWay.ApiClient", "PersonDiary.GateWay.ApiClient\PersonDiary.GateWay.ApiClient.csproj", "{3A151807-4C32-49A2-BC5F-7ED95111CBDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonDiary.GateWay.Dto", "PersonDiary.GateWay.Dto\PersonDiary.GateWay.Dto.csproj", "{D386F2E2-A71A-40ED-9299-D5375A4D3BB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.GateWay.Dto", "PersonDiary.GateWay.Dto\PersonDiary.GateWay.Dto.csproj", "{D386F2E2-A71A-40ED-9299-D5375A4D3BB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.Infrastructure.Cache", "Infrastructure\PersonDiary.Infrastructure.Cache\PersonDiary.Infrastructure.Cache.csproj", "{2FFA8FC4-221B-4316-B02D-004CF95F7B98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonDiary.Lifeevent.Cache", "PersonDiary.Lifeevent.Cache\PersonDiary.Lifeevent.Cache.csproj", "{19C5D62E-00A4-434F-ADB7-A03E8114FF87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,6 +165,14 @@ Global
 		{D386F2E2-A71A-40ED-9299-D5375A4D3BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D386F2E2-A71A-40ED-9299-D5375A4D3BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D386F2E2-A71A-40ED-9299-D5375A4D3BB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FFA8FC4-221B-4316-B02D-004CF95F7B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FFA8FC4-221B-4316-B02D-004CF95F7B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FFA8FC4-221B-4316-B02D-004CF95F7B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FFA8FC4-221B-4316-B02D-004CF95F7B98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19C5D62E-00A4-434F-ADB7-A03E8114FF87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19C5D62E-00A4-434F-ADB7-A03E8114FF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19C5D62E-00A4-434F-ADB7-A03E8114FF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19C5D62E-00A4-434F-ADB7-A03E8114FF87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -190,6 +202,8 @@ Global
 		{332E4A40-EAB2-41E9-8C95-993244F1DD05} = {4C67A96C-4951-43A7-A185-B2F74CDA49D9}
 		{3A151807-4C32-49A2-BC5F-7ED95111CBDD} = {1EAEB513-AC0B-4C94-BDEC-C24F83E84822}
 		{D386F2E2-A71A-40ED-9299-D5375A4D3BB8} = {1EAEB513-AC0B-4C94-BDEC-C24F83E84822}
+		{2FFA8FC4-221B-4316-B02D-004CF95F7B98} = {CB2EAFF9-67B7-4911-8B14-590E6CE9949E}
+		{19C5D62E-00A4-434F-ADB7-A03E8114FF87} = {B0ED5342-35EF-4FC2-952A-A61173A95E61}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC6FB8AF-DDA6-4CF5-B227-EBA442F24AD3}

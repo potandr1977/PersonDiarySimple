@@ -6,6 +6,9 @@ using PersonDiary.Infrastructure.Dto;
 using PersonDiary.LifeEvent.Domain.Business.Services;
 using PersonDiary.LifeEvent.Domain.DataAccess.Dao;
 using PersonDiary.LifeEvent.Dto;
+using PersonDiary.Infrastructure.Domain.Cache;
+using Newtonsoft.Json;
+using PersonDiary.Lifeevent.Cache;
 
 namespace PersonDiary.LifeEvent.Business
 {
@@ -13,14 +16,17 @@ namespace PersonDiary.LifeEvent.Business
     {
         private readonly ILifeEventDao lifeEventDao;
         private readonly IMapper mapper;
+        private readonly ICacheStore cacheStore;
 
-        public LifeEventService(ILifeEventDao lifeEventDao, IMapper mapper)
+        public LifeEventService(ILifeEventDao lifeEventDao, IMapper mapper, LifeEventCacheStore cacheStore)
         {
             this.lifeEventDao = lifeEventDao ?? throw new ArgumentNullException("UnitOfWorkFactory in LifeEventModel is null");
             this.mapper = mapper
                 ?? throw new ArgumentNullException("Mapper in LifeEventModel is null");
+
+            this.cacheStore = cacheStore;
         }
-        
+
         public async Task<GetLifeEventsResponse> GetItemsAsync(GetLifeEventsRequest request)
         {
             if (request == null)
@@ -28,17 +34,31 @@ namespace PersonDiary.LifeEvent.Business
                 throw new ArgumentNullException("LifeEventModel model GetLifeEventListRequest  is invalid");
             }
 
-            var resp = new GetLifeEventsResponse();
+            var cacheKey = GetCacheKey(request);
+            var cacheValue = cacheStore.GetValue(cacheKey);
+
+            if (cacheValue != null)
+            {
+                var cachedResponse = JsonConvert.DeserializeObject<GetLifeEventsResponse>(cacheValue);
+                return cachedResponse;
+            }
+
+            var response = new GetLifeEventsResponse();
+
             try
             {
                 var lifeEvents = await lifeEventDao.GetItemsAsync(request.PageNo, request.PageSize).ConfigureAwait(false);
-                resp.LifeEvents = lifeEvents.Select(mapper.Map<LifeEventDto>).ToList();
+                response.LifeEvents = lifeEvents.Select(mapper.Map<LifeEventDto>).ToList();
             }
             catch (Exception e)
             { 
-                resp.Messages.Add(new Message(e.Message)); 
+                response.Messages.Add(new Message(e.Message)); 
             }
-            return resp;
+
+            var serializedResponse = JsonConvert.SerializeObject(response);
+            cacheStore.SetValue(cacheKey, serializedResponse);
+
+            return response;
 
         }
         
@@ -97,6 +117,8 @@ namespace PersonDiary.LifeEvent.Business
             {
                 var item = mapper.Map<Models.LifeEvent>(request.LifeEvent);
                 await lifeEventDao.CreateAsync(item).ConfigureAwait(false);
+
+                cacheStore.Clear();
             }
             catch (Exception e) { resp.Messages.Add(new Message(e.Message)); }
             
@@ -116,6 +138,8 @@ namespace PersonDiary.LifeEvent.Business
             {
                 var item = mapper.Map<Models.LifeEvent>(request.LifeEvent);
                 await lifeEventDao.UpdateAsync(item).ConfigureAwait(false);
+
+                cacheStore.Clear();
             }
             catch (Exception e) { resp.Messages.Add(new Message(e.Message)); }
             
@@ -135,11 +159,17 @@ namespace PersonDiary.LifeEvent.Business
             try
             {
                 await lifeEventDao.DeleteAsync(request.Id).ConfigureAwait(false);
+
+                cacheStore.Clear();
             }
             catch (Exception e) { resp.Messages.Add(new Message(e.Message)); }
             
             return resp;
         }
 
+        private static string GetCacheKey(GetLifeEventsRequest request)
+        {
+            return $"pageNo_{request.PageNo}_pageSize_{request.PageSize}";
+        }
     }
 }

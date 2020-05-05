@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PersonDiary.Lifeevent.Cache\PersonDiary.Lifeevent.Cache.csproj" />
       <ProjectReference Include="..\PersonDiary.LifeEvent.Domain\PersonDiary.LifeEvent.Domain.csproj" />
       <ProjectReference Include="..\PersonDiary.LifeEvent.Dto\PersonDiary.LifeEvent.Dto.csproj" />
     </ItemGroup>
