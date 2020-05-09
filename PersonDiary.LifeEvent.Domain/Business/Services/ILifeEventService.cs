@@ -17,6 +17,6 @@ namespace PersonDiary.LifeEvent.Domain.Business.Services
         
         Task<DeleteLifeEventResponseDto> DeleteAsync(DeleteLifeEventRequestDto request);
 
-        Task PersonCreatedAsync(UpdateLifeEventRequestDto request);
+        Task PersonCreatedAsync(PersonCreateDto request);
     }
 }

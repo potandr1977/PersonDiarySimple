@@ -23,7 +23,7 @@ namespace PersonDiary.LifeEvent.ApiClient
         }
         public Task<GetLifeEventResponseDto> GetLifeEvent(int id)
         {
-            return GetAsync<GetLifeEventResponseDto>($"api/LifeEvent/", id);
+            return GetAsync<GetLifeEventResponseDto>($"/api/LifeEvent/", id);
         }
 
         public Task<GetLifeEventsResponseDto> GetLifeEventsByPersonId(int personId)
@@ -33,17 +33,17 @@ namespace PersonDiary.LifeEvent.ApiClient
 
         public Task SaveOrUpdate(UpdateLifeEventRequestDto updateLifeEventRequest)
         {
-            return PutAsync("api/lifeevent/", updateLifeEventRequest);
+            return PutAsync("/api/lifeevent/", updateLifeEventRequest);
         }
 
         public Task Delete(int id)
         {
-            return DeleteAsync($"api/person/", id);
+            return DeleteAsync($"/api/person/", id);
         }
 
         public Task PersonCreatedAsync(PersonCreateDto personCreateDto)
         {
-            return PostAsync("api/lifeevent/PersonCreatedAsync", personCreateDto);
+            return GetAsync("/api/lifeevent/personcreated", personCreateDto);
         }
     }
 }

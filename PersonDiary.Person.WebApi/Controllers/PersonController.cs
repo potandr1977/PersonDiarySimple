@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using PersonDiary.Infrastructure.Domain.EventBus;
+using PersonDiary.Infrastructure.Domain.EventBus.Events;
 using PersonDiary.Person.Domain.Business.Services;
 using PersonDiary.Person.Dto;
 using System.Threading.Tasks;
@@ -11,7 +13,7 @@ namespace PersonDiary.React.EFCore.Controllers
     public class PersonController : ControllerBase
     {
         private readonly IPersonService personService;
-        
+
         public PersonController(IPersonService personService)
         {
             this.personService = personService;

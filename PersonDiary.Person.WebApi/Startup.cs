@@ -8,15 +8,16 @@ using PersonDiary.Contexts;
 using PersonDiary.Infrastructure.ApiClient.Helpers;
 using PersonDiary.Infrastructure.Domain.ApiClient;
 using PersonDiary.Infrastructure.Domain.EventBus;
+using PersonDiary.Infrastructure.Domain.EventBus.Events;
 using PersonDiary.Infrastructure.Domain.HttpApiClients;
 using PersonDiary.Infrastructure.HttpApiClient;
 using PersonDiary.Infrastructure.HttpApiClient.Helpers;
+using PersonDiary.Infrastructure.Lifeevent.EventBus;
 using PersonDiary.Person.ApiClient;
 using PersonDiary.Person.Business;
 using PersonDiary.Person.Domain;
 using PersonDiary.Person.Domain.Business.Services;
 using PersonDiary.Person.Domain.DataAccess.Dao;
-using PersonDiary.Person.EventBus;
 using PersonDiary.Person.Mapping;
 using PersonDiary.Person.Repositories;
 using PersonDiary.Repositories.Dao;
@@ -39,13 +40,22 @@ namespace PersonDiary.Person.WebApi
             .AddSingleton<IHttpRequestExecutor, HttpRequestExecutor>()
             .AddSingleton<IUriCreator, UriCreator>()
             .AddSingleton<IResponseParser, ResponseParser>()
-            .AddTransient(typeof(SqlContext))
-            .AddTransient<ILifeEventApiClient, LifeEventApiClient>()
-            .AddTransient<IPersonRepository, PersonRepository>()
-            .AddTransient<IUnitOfWork, UnitOfWork>()
-            .AddTransient<IPersonDao, PersonDao>()
-            .AddTransient<IPersonService, PersonService>()
-            .AddSingleton<IPublisherFactory, PersonPublisherFactory>();
+            .AddSingleton(typeof(SqlContext))
+            .AddSingleton<ILifeEventApiClient, LifeEventApiClient>()
+            .AddSingleton<IPersonRepository, PersonRepository>()
+            .AddSingleton<IUnitOfWork, UnitOfWork>()
+            .AddSingleton<IPersonDao, PersonDao>()
+            .AddSingleton<IPersonService, PersonService>()
+            .AddSingleton<IPublisherFactory, LifeEventPublisherFactory>();
+
+            services
+            .AddSingleton(provider =>
+            {
+                var lifeEventPublisherFactory = provider.GetService<IPublisherFactory>();
+                var publisher = lifeEventPublisherFactory.Create<PersonCreate>();
+
+                return publisher;
+            });
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
@@ -54,23 +64,7 @@ namespace PersonDiary.Person.WebApi
 
             var mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
-
-            /*
-            services.AddSingleton<IPersonSubscriberFactory, PersonSubscriberFactory>();
-            private readonly IPersonSubscriberFactory personSubscriberFactory;
-            var subscriber = personSubscriberFactory.Create<LifeEventCreate>();
-            
-            subscriber.Subscribe(lifeEventCreate =>
-            {
-                personApiClient.LifeEventCreatedAsync(new LifeEventCreateDto()
-                {
-                    Id = lifeEventCreate.Id
-                }); //call and forget
-                
-                this.logger.LogInformation($"LifeEventCreate event received, id = {lifeEventCreate.Id}");   
-            });
-            */
-
+           
             services.AddControllers();
         }
 

@@ -12,11 +12,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.ApiClient\PersonDiary.Infrastructure.ApiClient.csproj" />
+    <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.EventBus.RabbitMq\PersonDiary.Infrastructure.EventBus.RabbitMq.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.ApiClient\PersonDiary.Person.ApiClient.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.Business\PersonDiary.Person.Business.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.DataAccess.Ef\PersonDiary.Person.DataAccess.Ef.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.Domain\PersonDiary.Person.Domain.csproj" />
-    <ProjectReference Include="..\PersonDiary.Person.EventBus\PersonDiary.Person.EventBus.csproj" />
   </ItemGroup>
 
 

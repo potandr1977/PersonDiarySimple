@@ -5,10 +5,10 @@ namespace PersonDiary.Person.EventBus
 {
     public class PersonSubscriberFactory : SubscriberFactory, IPersonSubscriberFactory
     {
-        private const string TopicReceiver = "PersonDiarySimple.Person.EventBus";
-        private const string SubscriptionId = "PersonDiarySimple.Person.EventBus.PersonSubscriber";
+        private const string Topic = "PersonDiarySimple.Person.EventBus";
+        private const string SubscriptionId = "PersonDiarySimple.Person.EventBus.PersonSubscriber_Subscription";
         public PersonSubscriberFactory() : 
-            base(TopicReceiver, SubscriptionId)
+            base(Topic, SubscriptionId)
         {
         }
     }

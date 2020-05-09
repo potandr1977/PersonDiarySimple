@@ -1,12 +1,12 @@
 ﻿
 using PersonDiary.Infrastructure.EventBus.RabbitMq;
 
-namespace PersonDiary.Lifeevent.EventBus
+namespace PersonDiary.Infrastructure.Lifeevent.EventBus
 {
     public class LifeEventSubscriberFactory : SubscriberFactory, ILifeEventSubscriberFactory
     {
-        private const string Topic = "PersonDiarySimple.LifeEvent.EventBus";
-        private const string SubscriptionId = "PersonDiarySimple.LifeEvent.EventBus_subscription";
+        private static readonly string Topic = Settings.LifeEventTopic;
+        private static readonly string SubscriptionId = Settings.LifeEventSubscriptionId;
         public LifeEventSubscriberFactory() : base(Topic, SubscriptionId)
         {
         }

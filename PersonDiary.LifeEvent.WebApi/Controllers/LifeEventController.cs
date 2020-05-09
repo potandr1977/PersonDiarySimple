@@ -31,38 +31,38 @@ namespace PersonDiary.LifeEvent.WebApi.Controllers
 
         [HttpGet]
         [Route("GetLifeEventsByPersonId")]
-        public async Task<GetLifeEventsResponseDto> GetLifeEventByPersonId([FromQuery] GetLifeEventsByPersonIdRequest request)
+        public Task<GetLifeEventsResponseDto> GetLifeEventByPersonId([FromQuery] GetLifeEventsByPersonIdRequest request)
         {
-            return await lifeEventService.GetItemsByPersonIdAsync(request);
+            return lifeEventService.GetItemsByPersonIdAsync(request);
         }
 
         [HttpGet("{id}")]
-        public async Task<GetLifeEventResponseDto> Get(int id)
+        public Task<GetLifeEventResponseDto> Get(int id)
         {
-            return await lifeEventService.GetItemAsync(new GetLifeEventRequestDto() { Id = id });
+            return lifeEventService.GetItemAsync(new GetLifeEventRequestDto() { Id = id });
         }
-        
+
         [HttpPost]
-        public async Task<UpdateLifeEventResponseDto> Post([FromBody]  UpdateLifeEventRequestDto request)
+        public Task<UpdateLifeEventResponseDto> Post([FromBody]  UpdateLifeEventRequestDto request)
         {
-            return await lifeEventService.CreateAsync(request);
+            return lifeEventService.CreateAsync(request);
         }
 
         [HttpPut]
-        public async Task<UpdateLifeEventResponseDto> Put([FromBody] UpdateLifeEventRequestDto request)
+        public Task<UpdateLifeEventResponseDto> Put([FromBody] UpdateLifeEventRequestDto request)
         {
-            return await lifeEventService.UpdateAsync(request);
+            return lifeEventService.UpdateAsync(request);
         }
 
         [HttpDelete("{id}")]
-        public async Task<DeleteLifeEventResponseDto> Delete(int id)
+        public Task<DeleteLifeEventResponseDto> Delete(int id)
         {
-            return await lifeEventService.DeleteAsync(new DeleteLifeEventRequestDto() { Id = id });
+            return lifeEventService.DeleteAsync(new DeleteLifeEventRequestDto() { Id = id });
         }
 
-        [HttpPost]
-        [Route("GetLifeEventsByPersonId")]
-        public Task PersonCreatedAsync([FromBody]  UpdateLifeEventRequestDto request)
+        [HttpGet]
+        [Route("PersonCreated")]
+        public Task PersonCreatedAsync([FromQuery] PersonCreateDto request)
         {
             return lifeEventService.PersonCreatedAsync(request);
         }

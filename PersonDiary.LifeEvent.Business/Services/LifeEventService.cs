@@ -57,7 +57,7 @@ namespace PersonDiary.LifeEvent.Business
 
             var serializedResponse = JsonConvert.SerializeObject(response);
             cacheStore.SetValue(cacheKey, serializedResponse);
-
+            
             return response;
 
         }
@@ -167,7 +167,7 @@ namespace PersonDiary.LifeEvent.Business
             return resp;
         }
 
-        public Task PersonCreatedAsync(UpdateLifeEventRequestDto request)
+        public Task PersonCreatedAsync(PersonCreateDto request)
         {
             cacheStore.Clear();
 

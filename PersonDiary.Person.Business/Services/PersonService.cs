@@ -18,18 +18,18 @@ namespace PersonDiary.Person.Business
         private readonly IPersonDao personDao;
         private readonly ILifeEventApiClient lifeEventApiClient;
         private readonly IMapper mapper;
-        private readonly IPublisherFactory publisherFactory;
+        private readonly IPublisher<PersonCreate> personPublisher;
 
         public PersonService(
             IPersonDao personDao, 
             ILifeEventApiClient lifeEventApiClient, 
-            IMapper mapper, 
-            IPublisherFactory publisherFactory)
+            IMapper mapper,
+            IPublisher<PersonCreate> personPublisher)
         {
             this.personDao = personDao ?? throw new ArgumentNullException("personDao in PersonService is null");;
             this.mapper = mapper ?? throw new ArgumentNullException("Mapper in PersonService is null");
             this.lifeEventApiClient = lifeEventApiClient;
-            this.publisherFactory = publisherFactory;
+            this.personPublisher = personPublisher;
         }
        
         public async Task<GetPersonsResponseDto> GetItemsAsync(GetPersonsRequestDto request)
@@ -51,9 +51,8 @@ namespace PersonDiary.Person.Business
             }
             catch (Exception e) { resp.AddMessage(new Message(e.Message)); }
 
-            var publisher = publisherFactory.Create<PersonCreate>();
-            await publisher.PublishEventAsync(new PersonCreate() { Id = 1 });
-
+            //personPublisher.PublishEventAsync(new PersonCreate() { Id = 1 }); //call and forget
+            personPublisher.PublishEvent(new PersonCreate() { Id = 1 }); //call and forget
             return resp;
 
         }
@@ -95,9 +94,8 @@ namespace PersonDiary.Person.Business
                 resp.Person = mapper.Map<PersonDto>(await personDao.GetItemAsync(item.Id));
             }
             catch (Exception e) { resp.AddMessage(new Message(e.Message)); };
-
-            var publisher = publisherFactory.Create<PersonCreate>();
-            await publisher.PublishEventAsync(new PersonCreate() { Id = resp.Person.Id });
+            
+            await personPublisher.PublishEventAsync(new PersonCreate() { Id = resp.Person.Id });
 
             return resp;
         }
