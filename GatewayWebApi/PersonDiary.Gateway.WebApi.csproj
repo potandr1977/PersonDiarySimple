@@ -11,5 +11,12 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.ApiClient\PersonDiary.Infrastructure.ApiClient.csproj" />
+    <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.Domain\PersonDiary.Infrastructure.Domain.csproj" />
+    <ProjectReference Include="..\PersonDiary.GateWay.ApiClient\PersonDiary.GateWay.ApiClient.csproj" />
+    <ProjectReference Include="..\PersonDiary.GateWay.Dto\PersonDiary.GateWay.Dto.csproj" />
+  </ItemGroup>
+
 
 </Project>

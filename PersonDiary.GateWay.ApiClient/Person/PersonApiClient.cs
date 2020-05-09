@@ -26,7 +26,7 @@ namespace PersonDiary.GateWay.ApiClient
         
         public Task<GetPersonResponseDto> GetPersonAsync(GetPersonRequestDto getPersonRequestDto)
         {
-            return GetAsync<GetPersonResponseDto>($"api/Person/", getPersonRequestDto);
+            return GetAsync<GetPersonResponseDto>($"/api/Person/{getPersonRequestDto.Id}");
         }
 
         public Task<GetPersonsResponseDto> GetPersonsAsync(GetPersonsRequestDto getPersonsRequestDto)
@@ -37,17 +37,17 @@ namespace PersonDiary.GateWay.ApiClient
         
         public Task SaveOrUpdatePersonAsync(UpdatePersonRequestDto updatePersonRequestDto)
         {
-            return PutAsync($"api/person/",updatePersonRequestDto);
+            return PutAsync($"/api/person/",updatePersonRequestDto);
         }
 
         public Task DeletePersonAsync(DeletePersonRequestDto deletePersonRequestDto)
         {
-            return DeleteAsync($"api/person/",new { id = deletePersonRequestDto.Id });
+            return DeleteAsync($"/api/person/",new { id = deletePersonRequestDto.Id });
         }
 
         public Task LifeEventCreatedAsync(UpdateLifeEventRequestDto lifeEventCreateDto)
         {
-            return PostAsync($"api/person/lifeeventcreated", lifeEventCreateDto);
+            return PostAsync($"/api/person/lifeeventcreated", lifeEventCreateDto);
         }
     }
 }

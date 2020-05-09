@@ -10,6 +10,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PersonDiary.GateWay.ApiClient;
+using PersonDiary.Infrastructure.ApiClient.Helpers;
+using PersonDiary.Infrastructure.Domain.ApiClient;
+using PersonDiary.Infrastructure.Domain.HttpApiClients;
+using PersonDiary.Infrastructure.HttpApiClient;
+using PersonDiary.Infrastructure.HttpApiClient.Helpers;
 
 namespace GatewayWebApi
 {
@@ -25,6 +31,13 @@ namespace GatewayWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services
+            .AddSingleton<IUriCreator, UriCreator>()
+            .AddSingleton<IResponseParser, ResponseParser>()
+            .AddSingleton<IHttpRequestExecutor, HttpRequestExecutor>()
+            .AddSingleton<ILifeEventApiClient, LifeEventApiClient>()
+            .AddSingleton<IPersonApiClient, PersonApiClient>();
+
             services.AddControllers();
         }
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PersonDiary.GateWay.ApiClient;
+using PersonDiary.GateWay.Dto;
 
 namespace GatewayWebApi.Controllers
 {
@@ -11,38 +13,17 @@ namespace GatewayWebApi.Controllers
     [ApiController]
     public class LifeEventController : ControllerBase
     {
-        /*
+        private readonly ILifeEventApiClient lifeEventApiClient;
+
+        public LifeEventController(ILifeEventApiClient lifeEventApiClient)
+        {
+            this.lifeEventApiClient = lifeEventApiClient;
+        }
+
         [HttpGet]
-        public async Task<GetLifeEventListResponse> Get([FromQuery] GetLifeEventListRequest request)
+        public Task<GetLifeEventsResponseDto> Get([FromQuery] GetLifeEventsRequestDto request)
         {
-            var resp = await lifeEventService.GetItemsAsync(request);
-
-            return resp;
+            return lifeEventApiClient.GetLifeEvents(request);
         }
-
-        [HttpGet("{id}")]
-        public async Task<GetLifeEventResponse> Get(int id)
-        {
-            return await lifeEventService.GetItemAsync(new GetLifeEventRequest() { Id = id });
-        }
-
-        [HttpPost]
-        public async Task<UpdateLifeEventResponse> Post([FromBody]  UpdateLifeEventRequest request)
-        {
-            return await lifeEventService.CreateAsync(request);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<UpdateLifeEventResponse> Put(int id, [FromBody] UpdateLifeEventRequest request)
-        {
-            return await lifeEventService.UpdateAsync(request);
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<DeleteLifeEventResponse> Delete(int id)
-        {
-            return await lifeEventService.DeleteAsync(new DeleteLifeEventRequest() { Id = id });
-        }
-        */
     }
 }

@@ -21,9 +21,14 @@ namespace PersonDiary.GateWay.ApiClient
         {
             return Settings.LifeEventMicroServiceUrl;
         }
+        public Task<GetLifeEventsResponseDto> GetLifeEvents(GetLifeEventsRequestDto request)
+        {
+            return GetAsync<GetLifeEventsResponseDto>($"/api/LifeEvent/", request);
+        }
+
         public Task<GetLifeEventResponseDto> GetLifeEvent(int id)
         {
-            return GetAsync<GetLifeEventResponseDto>($"api/LifeEvent/", id);
+            return GetAsync<GetLifeEventResponseDto>($"/api/LifeEvent/", id);
         }
 
         public Task<GetLifeEventsResponseDto> GetLifeEventsByPersonId(int personId)
@@ -33,12 +38,12 @@ namespace PersonDiary.GateWay.ApiClient
 
         public Task SaveOrUpdate(UpdateLifeEventRequestDto updateLifeEventRequest)
         {
-            return PutAsync("api/lifeevent/", updateLifeEventRequest);
+            return PutAsync("/api/lifeevent/", updateLifeEventRequest);
         }
 
         public Task Delete(int id)
         {
-            return DeleteAsync($"api/person/", id);
+            return DeleteAsync($"/api/person/", id);
         }
     }
 }

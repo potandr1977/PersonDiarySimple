@@ -6,6 +6,8 @@ namespace PersonDiary.GateWay.ApiClient
 {
     public interface ILifeEventApiClient
     {
+        Task<GetLifeEventsResponseDto> GetLifeEvents(GetLifeEventsRequestDto reqeust);
+
         Task<GetLifeEventResponseDto> GetLifeEvent(int id);
 
         Task<GetLifeEventsResponseDto> GetLifeEventsByPersonId(int personId);

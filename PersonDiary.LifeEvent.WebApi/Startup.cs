@@ -83,15 +83,15 @@ namespace PersonDiary.LifeEvent.WebApi
             ISubscriber<PersonCreate> subscriber
             )
         {
-            /*
-            subscriber.Subscribe(async personCreate =>
+            
+            subscriber.Subscribe(personCreate =>
             {
-                await lifeEventApiClient.PersonCreatedAsync(new PersonCreateDto()
+                lifeEventApiClient.PersonCreatedAsync(new PersonCreateDto()
                 {
                     PersonId = personCreate.Id
-                }).ConfigureAwait(false); //call and forget
+                }); //call and forget
             });
-            */
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
