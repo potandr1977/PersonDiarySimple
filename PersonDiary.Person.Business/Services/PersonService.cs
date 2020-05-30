@@ -48,6 +48,9 @@ namespace PersonDiary.Person.Business
                     await personDao.GetItemsAsync(request.PageNo, request.PageSize)
                    );
                 resp.Count = await personDao.CountAsync();
+
+                //just for test
+                personPublisher.PublishEvent(new PersonCreate() { Id = 1 });
             }
             catch (Exception e) { resp.AddMessage(new Message(e.Message)); }
             
@@ -93,7 +96,7 @@ namespace PersonDiary.Person.Business
             }
             catch (Exception e) { resp.AddMessage(new Message(e.Message)); };
             
-            await personPublisher.PublishEventAsync(new PersonCreate() { Id = resp.Person.Id });
+            personPublisher.PublishEvent(new PersonCreate() { Id = resp.Person.Id });
 
             return resp;
         }
