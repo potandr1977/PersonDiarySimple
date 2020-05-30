@@ -8,6 +8,15 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["PersonDiary.Person.WebApi/PersonDiary.Person.WebApi.csproj", "PersonDiary.Person.WebApi/"]
+COPY ["PersonDiary.Person.Domain/PersonDiary.Person.Domain.csproj", "PersonDiary.Person.Domain/"]
+COPY ["PersonDiary.Person.Dto/PersonDiary.Person.Dto.csproj", "PersonDiary.Person.Dto/"]
+COPY ["Infrastructure/PersonDiary.Infrastructure.Dto/PersonDiary.Infrastructure.Dto.csproj", "Infrastructure/PersonDiary.Infrastructure.Dto/"]
+COPY ["Infrastructure/PersonDiary.Infrastructure.Domain/PersonDiary.Infrastructure.Domain.csproj", "Infrastructure/PersonDiary.Infrastructure.Domain/"]
+COPY ["PersonDiary.Person.Business/PersonDiary.Person.Business.csproj", "PersonDiary.Person.Business/"]
+COPY ["PersonDiary.Person.ApiClient/PersonDiary.Person.ApiClient.csproj", "PersonDiary.Person.ApiClient/"]
+COPY ["Infrastructure/PersonDiary.Infrastructure.EventBus.RabbitMq/PersonDiary.Infrastructure.EventBus.RabbitMq.csproj", "Infrastructure/PersonDiary.Infrastructure.EventBus.RabbitMq/"]
+COPY ["Infrastructure/PersonDiary.Infrastructure.ApiClient/PersonDiary.Infrastructure.ApiClient.csproj", "Infrastructure/PersonDiary.Infrastructure.ApiClient/"]
+COPY ["PersonDiary.Person.DataAccess.Ef/PersonDiary.Person.DataAccess.Ef.csproj", "PersonDiary.Person.DataAccess.Ef/"]
 RUN dotnet restore "PersonDiary.Person.WebApi/PersonDiary.Person.WebApi.csproj"
 COPY . .
 WORKDIR "/src/PersonDiary.Person.WebApi"

@@ -29,7 +29,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/person",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/person?pageNo=0&pageSize=10",
       "publishAllPorts": true,
       "useSSL": true
     }

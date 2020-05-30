@@ -15,6 +15,8 @@ namespace PersonDiary.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=persondb;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer("Server=MY_IP\\MY_INSTANCE;Database=persondb;Trusted_Connection=True;");
+            
         }
         /// <summary>
         /// Устанавливаем правила удаления событий персоны с помощью Fluent API и набиваем БД тестовыми данными 

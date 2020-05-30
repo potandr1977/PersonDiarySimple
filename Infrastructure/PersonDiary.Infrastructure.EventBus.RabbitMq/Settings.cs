@@ -2,7 +2,7 @@
 {
     public static class Settings
     {
-        public static string ConnectionString { get; } = "host=localhost";
+        public static string ConnectionString { get; } = "host=rabbit";
 
         public static string LifeEventTopic { get; } = "PersonDiarySimple.Lifeevent.EventBus_topic";
 

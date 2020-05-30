@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  rabbit:
+    image: rabbitmq:3-management-alpine
+    hostname: rabbit
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    expose:
+     - 15672
+     - 5672
+
+  persondiary.person.webapi:
+    image: ${DOCKER_REGISTRY-}persondiarypersonwebapi
+    build:
+      context: .
+      dockerfile: PersonDiary.Person.WebApi/Dockerfile
+
+  persondiary.lifeevent.webapi:
+    image: ${DOCKER_REGISTRY-}persondiarylifeeventwebapi
+    build:
+      context: .
+      dockerfile: PersonDiary.LifeEvent.WebApi/Dockerfile
+

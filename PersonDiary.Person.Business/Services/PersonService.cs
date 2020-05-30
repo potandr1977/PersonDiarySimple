@@ -50,9 +50,7 @@ namespace PersonDiary.Person.Business
                 resp.Count = await personDao.CountAsync();
             }
             catch (Exception e) { resp.AddMessage(new Message(e.Message)); }
-
-            //personPublisher.PublishEventAsync(new PersonCreate() { Id = 1 }); //call and forget
-            personPublisher.PublishEvent(new PersonCreate() { Id = 1 }); //call and forget
+            
             return resp;
 
         }
