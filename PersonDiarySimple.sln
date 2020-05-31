@@ -77,6 +77,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.Test.RabbitMq.R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.Lifeevent.EventBus.SubscriberWorker", "PersonDiary.Lifeevent.EventBus.SubscriberWorker\PersonDiary.Lifeevent.EventBus.SubscriberWorker.csproj", "{2604AA0F-440C-4F48-B1F9-64AFA957B075}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C6566BE0-BFAC-4CA7-B42E-AA2A505F0794}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -187,6 +189,10 @@ Global
 		{2604AA0F-440C-4F48-B1F9-64AFA957B075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2604AA0F-440C-4F48-B1F9-64AFA957B075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2604AA0F-440C-4F48-B1F9-64AFA957B075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6566BE0-BFAC-4CA7-B42E-AA2A505F0794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6566BE0-BFAC-4CA7-B42E-AA2A505F0794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6566BE0-BFAC-4CA7-B42E-AA2A505F0794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6566BE0-BFAC-4CA7-B42E-AA2A505F0794}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

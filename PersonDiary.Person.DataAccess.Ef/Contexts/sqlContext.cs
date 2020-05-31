@@ -27,8 +27,8 @@ namespace PersonDiary.Contexts
             modelBuilder.Entity<Person.Models.Person>().HasData(
                 new Person.Models.Person[]
                 {
-                    new Person.Models.Person {Id =1,Name = "Michael",Surname="Jackson"},
-                    new Person.Models.Person {Id =2,Name = "Tom",Surname="Jones"}
+                    new Person.Models.Person {Id =1, Name = "Michael", Surname="Jackson"},
+                    new Person.Models.Person {Id =2, Name = "Tom", Surname="Jones"}
                 });
 
             base.OnModelCreating(modelBuilder);
