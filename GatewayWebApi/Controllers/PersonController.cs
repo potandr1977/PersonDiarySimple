@@ -27,5 +27,22 @@ namespace GatewayWebApi.Controllers
         {
             return personApiClient.GetPersonAsync(new GetPersonRequestDto { Id = id });
         }
+        [HttpPost]
+        public Task Post([FromBody]  UpdatePersonRequestDto request)
+        {
+            return personApiClient.SaveOrUpdatePersonAsync(request);
+        }
+
+        [HttpPut("{id}")]
+        public Task Put(int id, [FromBody] UpdatePersonRequestDto request)
+        {
+            return personApiClient.SaveOrUpdatePersonAsync(request);
+        }
+
+        [HttpDelete("{id}")]
+        public Task Delete(int id)
+        {
+           return personApiClient.DeletePersonAsync(new DeletePersonRequestDto() { Id = id });
+        }
     }
 }
