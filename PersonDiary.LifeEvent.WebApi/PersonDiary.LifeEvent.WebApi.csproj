@@ -19,7 +19,7 @@
     <ProjectReference Include="..\PersonDiary.Lifeevent.ApiClient\PersonDiary.Lifeevent.ApiClient.csproj" />
     <ProjectReference Include="..\PersonDiary.LifeEvent.Business\PersonDiary.LifeEvent.Business.csproj" />
     <ProjectReference Include="..\PersonDiary.Lifeevent.Cache\PersonDiary.Lifeevent.Cache.csproj" />
-    <ProjectReference Include="..\PersonDiary.LifeEvent.DataAccess.Ef\PersonDiary.LifeEvent.DataAccess.Ef.csproj" />
+    <ProjectReference Include="..\PersonDiary.Lifeevent.DataAccess.PostgreSQL\PersonDiary.Lifeevent.DataAccess.PostgreSQL.csproj" />
     <ProjectReference Include="..\PersonDiary.LifeEvent.Domain\PersonDiary.LifeEvent.Domain.csproj" />
   </ItemGroup>
 
