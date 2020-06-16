@@ -1,32 +1,57 @@
 version: '3.4'
 
 services:
-  rabbit:
-    image: rabbitmq:3-management-alpine
-    hostname: rabbit
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    expose:
-     - 15672
-     - 5672
+  rabbitmq:
+     image: rabbitmq:3.8.3-management
+     ports:
+       - "5673:5672"
+       - "15673:15672"
+     container_name: personsimplerabbitmq
+     environment:
+       - RABBITMQ_DEFAULT_USER=admin
+       - RABBITMQ_DEFAULT_PASS=admin
+     networks:
+       - mynetwork
+
+  pgserver:
+     image: postgres
+     restart: always
+     ports:
+       - 5432:5432
+     environment:
+       - POSTGRES_USER=app
+       - POSTGRES_PASSWORD=app
+     volumes:
+       - pgdata:/var/lib/postgresql/data
+     networks:
+       - mynetwork
 
   persondiary.person.webapi:
-    image: ${DOCKER_REGISTRY-}persondiarypersonwebapi
-    build:
-      context: .
-      dockerfile: PersonDiary.Person.WebApi\Dockerfile
+     image: ${DOCKER_REGISTRY-}persondiarypersonwebapi
+     build:
+       context: .
+       dockerfile: PersonDiary.Person.WebApi/Dockerfile
+     depends_on:
+       - "personsimplerabbitmq"
+       - "pgserver"
+     networks:
+       - mynetwork
 
   persondiary.lifeevent.webapi:
-    image: ${DOCKER_REGISTRY-}persondiarylifeeventwebapi
-    build:
-      context: .
-      dockerfile: PersonDiary.LifeEvent.WebApi\Dockerfile
+     image: ${DOCKER_REGISTRY-}persondiarylifeeventwebapi
+     build:
+       context: .
+       dockerfile: PersonDiary.LifeEvent.WebApi/Dockerfile
+     depends_on:
+       - "personsimplerabbitmq"
+       - "pgserver"
+     networks:
+       - mynetwork
 
 
-  persondiary.gateway.webapi:
-    image: ${DOCKER_REGISTRY-}persondiarygatewaywebapi
-    build:
-      context: .
-      dockerfile: GatewayWebApi\Dockerfile
-
+volumes:
+  pgdata:
+ 
+networks:
+  mynetwork:
+     driver: bridge

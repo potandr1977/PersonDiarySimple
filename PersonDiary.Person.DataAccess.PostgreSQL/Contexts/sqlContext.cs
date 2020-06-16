@@ -15,7 +15,8 @@ namespace PersonDiary.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(
-                "User ID=postgres;Password=1;Server=127.0.0.1;Port=5433;Database=Person;Integrated Security=true;Pooling=true;"
+                "Host=pgserver;Port=5432;Database=person;User Id=app;Password=app;Pooling=true;"
+                //"Host=localhost;Port=5433;Database=person;User Id=postgres;Password=1;Pooling=true;"
                 );
         }
         /// <summary>
