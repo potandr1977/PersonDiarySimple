@@ -4,8 +4,8 @@ services:
   rabbitmq:
      image: rabbitmq:3.8.3-management
      ports:
-       - "5673:5672"
-       - "15673:15672"
+       - "5674:5672"
+       - "15674:15672"
      container_name: personsimplerabbitmq
      environment:
        - RABBITMQ_DEFAULT_USER=admin
@@ -32,8 +32,9 @@ services:
        context: .
        dockerfile: PersonDiary.Person.WebApi/Dockerfile
      depends_on:
-       - "personsimplerabbitmq"
+       - "rabbitmq"
        - "pgserver"
+       - "persondiary.lifeevent.webapi"
      networks:
        - mynetwork
 
@@ -43,7 +44,7 @@ services:
        context: .
        dockerfile: PersonDiary.LifeEvent.WebApi/Dockerfile
      depends_on:
-       - "personsimplerabbitmq"
+       - "rabbitmq"
        - "pgserver"
      networks:
        - mynetwork

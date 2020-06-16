@@ -2,7 +2,7 @@
 {
     public static class Settings
     {
-        public static string ConnectionString { get; } = "host=dockerrabbitmqtestrabbitmq;username=admin;password=admin";
+        public static string ConnectionString { get; } = "host=personsimplerabbitmq;username=admin;password=admin";
 
         public static string LifeEventTopic { get; } = "PersonDiarySimple.Lifeevent.EventBus_topic";
 
