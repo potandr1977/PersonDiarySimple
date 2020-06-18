@@ -7,7 +7,7 @@ namespace PersonDiary.Infrastructure.Cache.Redis
     public class DbExecutorRedis : IDbExecutorCache
     {
         
-        private const string redisHost = "localhost";
+        private const string redisHost = "persondiaryredis";
         private readonly int redisPort = 6379;
         private ConnectionMultiplexer connectionMultiplexer;
         

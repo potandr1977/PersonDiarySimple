@@ -1,6 +1,14 @@
 version: '3.4'
 
 services:
+  redis:
+     image: redis
+     container_name: persondiaryredis
+     ports:
+       - '63799:6379'
+     networks:
+       - mynetwork
+
   rabbitmq:
      image: rabbitmq:3.8.3-management
      ports:
@@ -46,6 +54,7 @@ services:
      depends_on:
        - "rabbitmq"
        - "pgserver"
+       - "redis"
      networks:
        - mynetwork
 
