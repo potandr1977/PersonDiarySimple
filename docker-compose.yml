@@ -59,6 +59,15 @@ services:
        - mynetwork
 
 
+  persondiary.gateway.webapi:
+    image: ${DOCKER_REGISTRY-}persondiarygatewaywebapi
+    build:
+      context: .
+      dockerfile: GatewayWebApi/Dockerfile
+    depends_on:
+       - "persondiary.lifeevent.webapi"
+       - "persondiary.person.webapi"
+
 volumes:
   pgdata:
  
