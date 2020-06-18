@@ -6,7 +6,7 @@
     <ProjectGuid>3253c691-0941-41fa-8005-47536943e841</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/person%3fpageNo=0&amp;pageSize=10</DockerServiceUrl>
-    <DockerServiceName>persondiary.person.webapi</DockerServiceName>
+    <DockerServiceName>persondiary.gateway.webapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

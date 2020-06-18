@@ -32,10 +32,7 @@ namespace PersonDiary.Infrastructure.HttpApiClient
             string uri,
             object queryParams = null,
             IReadOnlyCollection<KeyValuePair<string, string>> queryHeaders = null,
-            HttpQuerySetting setting = null,
-            string memberName = "",
-            string sourceFilePath = "",
-            int sourceLineNumber = 0)
+            HttpQuerySetting setting = null)
         {
             var fullUri = uriCreator.Create(GetApiEndpoint(), uri, queryParams);
             try

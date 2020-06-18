@@ -67,6 +67,8 @@ services:
     depends_on:
        - "persondiary.lifeevent.webapi"
        - "persondiary.person.webapi"
+    networks:
+       - mynetwork
 
 volumes:
   pgdata:
