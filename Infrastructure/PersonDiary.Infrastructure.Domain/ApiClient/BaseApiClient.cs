@@ -53,10 +53,7 @@ namespace PersonDiary.Infrastructure.HttpApiClient
             string uri,
             object queryParams = null,
             IReadOnlyCollection<KeyValuePair<string, string>> queryHeaders = null,
-            HttpQuerySetting setting = null,
-            string memberName = "",
-            string sourceFilePath = "",
-            int sourceLineNumber = 0)
+            HttpQuerySetting setting = null)
         {
             var fullUri = uriCreator.Create(GetApiEndpoint(), uri, queryParams);
            
@@ -77,10 +74,7 @@ namespace PersonDiary.Infrastructure.HttpApiClient
                 string uri,
                 TRequest data,
                 IReadOnlyCollection<KeyValuePair<string, string>> queryHeaders = null,
-                HttpQuerySetting setting = null,
-                string memberName = "",
-                string sourceFilePath = "",
-                int sourceLineNumber = 0
+                HttpQuerySetting setting = null
             )
             where TRequest : class
         {
@@ -102,10 +96,7 @@ namespace PersonDiary.Infrastructure.HttpApiClient
         protected async Task<TResponse> PostAsync<TResponse>(
             string uri,
             IReadOnlyCollection<KeyValuePair<string, string>> queryHeaders = null,
-            HttpQuerySetting setting = null,
-            string memberName = "",
-            string sourceFilePath = "",
-            int sourceLineNumber = 0)
+            HttpQuerySetting setting = null)
         {
             var fullUri = uriCreator.Create(GetApiEndpoint(), uri);
 
@@ -127,10 +118,7 @@ namespace PersonDiary.Infrastructure.HttpApiClient
             string uri,
             TRequest data,
             IReadOnlyCollection<KeyValuePair<string, string>> queryHeaders = null,
-            HttpQuerySetting setting = null,
-            string memberName = "",
-            string sourceFilePath = "",
-            int sourceLineNumber = 0)
+            HttpQuerySetting setting = null)
             where TRequest : class
         {
             var fullUri = uriCreator.Create(GetApiEndpoint(), uri);
@@ -149,10 +137,7 @@ namespace PersonDiary.Infrastructure.HttpApiClient
         protected async Task PostAsync(
             string uri,
             IReadOnlyCollection<KeyValuePair<string, string>> queryHeaders = null,
-            HttpQuerySetting setting = null,
-            string memberName = "",
-            string sourceFilePath = "",
-            int sourceLineNumber = 0)
+            HttpQuerySetting setting = null)
         {
             var fullUri = uriCreator.Create(GetApiEndpoint(), uri);
             
@@ -171,10 +156,7 @@ namespace PersonDiary.Infrastructure.HttpApiClient
             string uri,
             TRequest data,
             IReadOnlyCollection<KeyValuePair<string, string>> queryHeaders = null,
-            HttpQuerySetting setting = null,
-            string memberName = "",
-            string sourceFilePath = "",
-            int sourceLineNumber = 0)
+            HttpQuerySetting setting = null)
             where TRequest : class
         {
             var fullUri = uriCreator.Create(GetApiEndpoint(), uri);
@@ -195,10 +177,7 @@ namespace PersonDiary.Infrastructure.HttpApiClient
             string uri,
             TRequest data,
             IReadOnlyCollection<KeyValuePair<string, string>> queryHeaders = null,
-            HttpQuerySetting setting = null,
-            string memberName = "",
-            string sourceFilePath = "",
-            int sourceLineNumber = 0)
+            HttpQuerySetting setting = null)
             where TRequest : class
         {
             var fullUri = uriCreator.Create(GetApiEndpoint(), uri);
