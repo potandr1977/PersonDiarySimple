@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.ApiClient\PersonDiary.Infrastructure.ApiClient.csproj" />
     <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.Domain\PersonDiary.Infrastructure.Domain.csproj" />
     <ProjectReference Include="..\PersonDiary.GateWay.Dto\PersonDiary.GateWay.Dto.csproj" />
   </ItemGroup>

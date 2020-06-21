@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.ApiClient\PersonDiary.Infrastructure.ApiClient.csproj" />
     <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.Domain\PersonDiary.Infrastructure.Domain.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.Dto\PersonDiary.Person.Dto.csproj" />
   </ItemGroup>

@@ -58,7 +58,6 @@ services:
      networks:
        - mynetwork
 
-
   persondiary.gateway.webapi:
     image: ${DOCKER_REGISTRY-}persondiarygatewaywebapi
     build:

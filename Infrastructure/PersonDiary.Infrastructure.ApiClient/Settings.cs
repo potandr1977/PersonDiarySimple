@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PersonDiary.GateWay.ApiClient
+﻿
+namespace PersonDiary.Infrastructure.HttpApiClient
 {
     public static class Settings
     {
