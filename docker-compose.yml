@@ -6,8 +6,6 @@ services:
      container_name: persondiaryredis
      ports:
        - '63799:6379'
-     networks:
-       - mynetwork
 
   rabbitmq:
      image: rabbitmq:3.8.3-management
@@ -18,8 +16,6 @@ services:
      environment:
        - RABBITMQ_DEFAULT_USER=admin
        - RABBITMQ_DEFAULT_PASS=admin
-     networks:
-       - mynetwork
 
   pgserver:
      image: postgres
@@ -31,8 +27,6 @@ services:
        - POSTGRES_PASSWORD=app
      volumes:
        - pgdata:/var/lib/postgresql/data
-     networks:
-       - mynetwork
 
   persondiary.person.webapi:
      image: ${DOCKER_REGISTRY-}persondiarypersonwebapi
@@ -43,8 +37,6 @@ services:
        - "rabbitmq"
        - "pgserver"
        - "persondiary.lifeevent.webapi"
-     networks:
-       - mynetwork
 
   persondiary.lifeevent.webapi:
      image: ${DOCKER_REGISTRY-}persondiarylifeeventwebapi
@@ -55,8 +47,6 @@ services:
        - "rabbitmq"
        - "pgserver"
        - "redis"
-     networks:
-       - mynetwork
 
   persondiary.gateway.webapi:
     image: ${DOCKER_REGISTRY-}persondiarygatewaywebapi
@@ -66,12 +56,6 @@ services:
     depends_on:
        - "persondiary.lifeevent.webapi"
        - "persondiary.person.webapi"
-    networks:
-       - mynetwork
 
 volumes:
   pgdata:
- 
-networks:
-  mynetwork:
-     driver: bridge
