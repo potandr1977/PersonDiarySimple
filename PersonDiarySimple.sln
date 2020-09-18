@@ -85,9 +85,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.Lifeevent.DataA
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3253C691-0941-41FA-8005-47536943E841}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "aks", "aks", "{4E55FA05-E29B-4BEF-BE7D-B29732661FF9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8", "k8", "{48BB7B6A-935F-48B9-BF40-F4765BC1D37F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "local", "local", "{86C6CA02-7C38-4506-84E5-A3DA0D30F52C}"
 	ProjectSection(SolutionItems) = preProject
-		persondiarysimple.yaml = persondiarysimple.yaml
+		persondiary-gateway-webapi-deployment.yaml = persondiary-gateway-webapi-deployment.yaml
+		persondiary-lifeevent-webapi-deployment.yaml = persondiary-lifeevent-webapi-deployment.yaml
+		persondiary-person-webapi-deployment.yaml = persondiary-person-webapi-deployment.yaml
+		pgdata-persistentvolumeclaim.yaml = pgdata-persistentvolumeclaim.yaml
+		pgserver-deployment.yaml = pgserver-deployment.yaml
+		pgserver-service.yaml = pgserver-service.yaml
+		rabbitmq-deployment.yaml = rabbitmq-deployment.yaml
+		rabbitmq-service.yaml = rabbitmq-service.yaml
+		redis-deployment.yaml = redis-deployment.yaml
+		redis-service.yaml = redis-service.yaml
 	EndProjectSection
 EndProject
 Global
@@ -247,6 +258,7 @@ Global
 		{2604AA0F-440C-4F48-B1F9-64AFA957B075} = {B0ED5342-35EF-4FC2-952A-A61173A95E61}
 		{F5D6CF6A-F4D4-45BB-8027-1B00B5903401} = {4C67A96C-4951-43A7-A185-B2F74CDA49D9}
 		{238B22DF-748F-4E91-821D-18BEE89BA5B7} = {B0ED5342-35EF-4FC2-952A-A61173A95E61}
+		{86C6CA02-7C38-4506-84E5-A3DA0D30F52C} = {48BB7B6A-935F-48B9-BF40-F4765BC1D37F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC6FB8AF-DDA6-4CF5-B227-EBA442F24AD3}
