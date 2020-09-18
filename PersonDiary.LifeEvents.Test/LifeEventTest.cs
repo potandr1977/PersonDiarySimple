@@ -30,8 +30,6 @@ namespace LifeEventDiary.BusinessLogic.Test
                 .AddTransient<ILifeEventRepository,LifeEventRepository>()
                 .AddTransient<IUnitOfWork, UnitOfWork>()
                 .AddSingleton<ILifeEventDao,LifeEventDao>()
-                //.AddSingleton<Mapper>()
-                //.AddSingleton<ILifeEventService, LifeEventService>()
                 .BuildServiceProvider();
             
             mapper = new MapperConfiguration(mc =>
