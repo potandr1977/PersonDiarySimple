@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.ApiClient\PersonDiary.Infrastructure.ApiClient.csproj" />
-    <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.EventBus.RabbitMq\PersonDiary.Infrastructure.EventBus.RabbitMq.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.ApiClient\PersonDiary.Person.ApiClient.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.Business\PersonDiary.Person.Business.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.DataAccess.PostgreSQL\PersonDiary.Person.DataAccess.PostgreSQL.csproj" />

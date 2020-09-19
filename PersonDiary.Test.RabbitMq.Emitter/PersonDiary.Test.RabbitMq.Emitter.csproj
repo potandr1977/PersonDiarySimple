@@ -7,7 +7,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.Domain\PersonDiary.Infrastructure.Domain.csproj" />
-      <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.EventBus.RabbitMq\PersonDiary.Infrastructure.EventBus.RabbitMq.csproj" />
     </ItemGroup>
 
 </Project>

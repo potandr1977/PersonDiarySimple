@@ -13,7 +13,6 @@ using PersonDiary.Infrastructure.Domain.EventBus.Events;
 using PersonDiary.Infrastructure.Domain.HttpApiClients;
 using PersonDiary.Infrastructure.HttpApiClient;
 using PersonDiary.Infrastructure.HttpApiClient.Helpers;
-using PersonDiary.Infrastructure.Lifeevent.EventBus;
 using PersonDiary.Infrastucture.Domain.DataAccess;
 using PersonDiary.Lifeevent.Cache;
 using PersonDiary.LifeEvent.ApiClient;
@@ -51,18 +50,7 @@ namespace PersonDiary.LifeEvent.WebApi
             .AddSingleton<IUriCreator, UriCreator>()
             .AddSingleton<IResponseParser, ResponseParser>()
             .AddSingleton<IHttpRequestExecutor, HttpRequestExecutor>()
-            .AddSingleton<ILifeEventApiClient, LifeEventApiClient>()
-            .AddSingleton<ILifeEventSubscriberFactory, LifeEventSubscriberFactory>();
-
-            services
-            .AddSingleton(provider => 
-            {
-                var lifeEventSubscriberFactory = provider.GetService<ILifeEventSubscriberFactory>();
-                var subscriber = lifeEventSubscriberFactory.Create<PersonCreate>();
-
-                return subscriber;
-            });
-            
+            .AddSingleton<ILifeEventApiClient, LifeEventApiClient>();
 
             var mappingConfig = new MapperConfiguration(mc =>
             {

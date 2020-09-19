@@ -15,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.ApiClient\PersonDiary.Infrastructure.ApiClient.csproj" />
     <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.Cache\PersonDiary.Infrastructure.Cache.csproj" />
-    <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.EventBus.RabbitMq\PersonDiary.Infrastructure.EventBus.RabbitMq.csproj" />
     <ProjectReference Include="..\PersonDiary.Lifeevent.ApiClient\PersonDiary.Lifeevent.ApiClient.csproj" />
     <ProjectReference Include="..\PersonDiary.LifeEvent.Business\PersonDiary.LifeEvent.Business.csproj" />
     <ProjectReference Include="..\PersonDiary.Lifeevent.Cache\PersonDiary.Lifeevent.Cache.csproj" />

@@ -12,7 +12,6 @@ using PersonDiary.Infrastructure.Domain.EventBus.Events;
 using PersonDiary.Infrastructure.Domain.HttpApiClients;
 using PersonDiary.Infrastructure.HttpApiClient;
 using PersonDiary.Infrastructure.HttpApiClient.Helpers;
-using PersonDiary.Infrastructure.Lifeevent.EventBus;
 using PersonDiary.Person.ApiClient;
 using PersonDiary.Person.Business;
 using PersonDiary.Person.Domain;
@@ -45,8 +44,7 @@ namespace PersonDiary.Person.WebApi
             .AddSingleton<IPersonRepository, PersonRepository>()
             .AddSingleton<IUnitOfWork, UnitOfWork>()
             .AddSingleton<IPersonDao, PersonDao>()
-            .AddSingleton<IPersonService, PersonService>()
-            .AddSingleton<IPublisherFactory, LifeEventPublisherFactory>();
+            .AddSingleton<IPersonService, PersonService>();
 
             services
             .AddSingleton(provider =>
