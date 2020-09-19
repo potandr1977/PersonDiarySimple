@@ -8,8 +8,6 @@ using PersonDiary.Person.Dto;
 using PersonDiary.Person.Domain.Business.Services;
 using PersonDiary.Person.Domain.DataAccess.Dao;
 using PersonDiary.Person.ApiClient;
-using PersonDiary.Infrastructure.Domain.EventBus;
-using PersonDiary.Infrastructure.Domain.EventBus.Events;
 
 namespace PersonDiary.Person.Business
 {
@@ -18,18 +16,15 @@ namespace PersonDiary.Person.Business
         private readonly IPersonDao personDao;
         private readonly ILifeEventApiClient lifeEventApiClient;
         private readonly IMapper mapper;
-        private readonly IPublisher<PersonCreate> personPublisher;
 
         public PersonService(
             IPersonDao personDao, 
             ILifeEventApiClient lifeEventApiClient, 
-            IMapper mapper,
-            IPublisher<PersonCreate> personPublisher)
+            IMapper mapper)
         {
             this.personDao = personDao ?? throw new ArgumentNullException("personDao in PersonService is null");;
             this.mapper = mapper ?? throw new ArgumentNullException("Mapper in PersonService is null");
             this.lifeEventApiClient = lifeEventApiClient;
-            this.personPublisher = personPublisher;
         }
        
         public async Task<GetPersonsResponseDto> GetItemsAsync(GetPersonsRequestDto request)
@@ -48,9 +43,6 @@ namespace PersonDiary.Person.Business
                     await personDao.GetItemsAsync(request.PageNo, request.PageSize)
                    );
                 resp.Count = await personDao.CountAsync();
-
-                //just for test
-                personPublisher.PublishEvent(new PersonCreate() { Id = 1 });
             }
             catch (Exception e) { resp.AddMessage(new Message(e.Message)); }
             
@@ -95,8 +87,6 @@ namespace PersonDiary.Person.Business
                 resp.Person = mapper.Map<PersonDto>(await personDao.GetItemAsync(item.Id));
             }
             catch (Exception e) { resp.AddMessage(new Message(e.Message)); };
-            
-            personPublisher.PublishEvent(new PersonCreate() { Id = resp.Person.Id });
 
             return resp;
         }

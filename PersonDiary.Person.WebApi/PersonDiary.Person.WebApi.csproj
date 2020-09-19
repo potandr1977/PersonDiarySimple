@@ -15,7 +15,7 @@
     <ProjectReference Include="..\Infrastructure\PersonDiary.Infrastructure.ApiClient\PersonDiary.Infrastructure.ApiClient.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.ApiClient\PersonDiary.Person.ApiClient.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.Business\PersonDiary.Person.Business.csproj" />
-    <ProjectReference Include="..\PersonDiary.Person.DataAccess.PostgreSQL\PersonDiary.Person.DataAccess.PostgreSQL.csproj" />
+    <ProjectReference Include="..\PersonDiary.Person.DataAccess.PostgreSQL\PersonDiary.Person.DataAccess.Sqlite.csproj" />
     <ProjectReference Include="..\PersonDiary.Person.Domain\PersonDiary.Person.Domain.csproj" />
   </ItemGroup>
 

@@ -8,8 +8,6 @@ using PersonDiary.Contexts;
 using PersonDiary.Infrastructure.ApiClient.Helpers;
 using PersonDiary.Infrastructure.Cache.Redis;
 using PersonDiary.Infrastructure.Domain.ApiClient;
-using PersonDiary.Infrastructure.Domain.EventBus;
-using PersonDiary.Infrastructure.Domain.EventBus.Events;
 using PersonDiary.Infrastructure.Domain.HttpApiClients;
 using PersonDiary.Infrastructure.HttpApiClient;
 using PersonDiary.Infrastructure.HttpApiClient.Helpers;
@@ -19,7 +17,6 @@ using PersonDiary.LifeEvent.ApiClient;
 using PersonDiary.LifeEvent.Business;
 using PersonDiary.LifeEvent.Domain.Business.Services;
 using PersonDiary.LifeEvent.Domain.DataAccess.Dao;
-using PersonDiary.LifeEvent.Dto;
 using PersonDiary.LifeEvent.Infrastructure.Domain;
 using PersonDiary.LifeEvent.Mapping;
 using PersonDiary.LifeEvent.Repositories;
@@ -66,20 +63,9 @@ namespace PersonDiary.LifeEvent.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
             IApplicationBuilder app, 
-            IWebHostEnvironment env, 
-            ILifeEventApiClient lifeEventApiClient,
-            ISubscriber<PersonCreate> subscriber
+            IWebHostEnvironment env
             )
         {
-            
-            subscriber.Subscribe(personCreate =>
-            {
-                lifeEventApiClient.PersonCreatedAsync(new PersonCreateDto()
-                {
-                    PersonId = personCreate.Id
-                }); //call and forget
-            });
-            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

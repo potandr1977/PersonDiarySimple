@@ -14,10 +14,7 @@ namespace PersonDiary.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(
-                "Host=pgserver;Port=5432;Database=person;User Id=app;Password=app;Pooling=true;"
-                //"Host=localhost;Port=5433;Database=person;User Id=postgres;Password=1;Pooling=true;"
-                );
+            optionsBuilder.UseSqlite("Filename=Person.db");
         }
         /// <summary>
         /// Устанавливаем правила удаления событий персоны с помощью Fluent API и набиваем БД тестовыми данными 

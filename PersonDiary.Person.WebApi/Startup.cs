@@ -7,8 +7,6 @@ using Microsoft.Extensions.Hosting;
 using PersonDiary.Contexts;
 using PersonDiary.Infrastructure.ApiClient.Helpers;
 using PersonDiary.Infrastructure.Domain.ApiClient;
-using PersonDiary.Infrastructure.Domain.EventBus;
-using PersonDiary.Infrastructure.Domain.EventBus.Events;
 using PersonDiary.Infrastructure.Domain.HttpApiClients;
 using PersonDiary.Infrastructure.HttpApiClient;
 using PersonDiary.Infrastructure.HttpApiClient.Helpers;
@@ -45,15 +43,6 @@ namespace PersonDiary.Person.WebApi
             .AddSingleton<IUnitOfWork, UnitOfWork>()
             .AddSingleton<IPersonDao, PersonDao>()
             .AddSingleton<IPersonService, PersonService>();
-
-            services
-            .AddSingleton(provider =>
-            {
-                var lifeEventPublisherFactory = provider.GetService<IPublisherFactory>();
-                var publisher = lifeEventPublisherFactory.Create<PersonCreate>();
-
-                return publisher;
-            });
 
             var mappingConfig = new MapperConfiguration(mc =>
             {

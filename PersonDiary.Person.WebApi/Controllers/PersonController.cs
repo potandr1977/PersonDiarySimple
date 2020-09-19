@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using PersonDiary.Infrastructure.Domain.EventBus;
-using PersonDiary.Infrastructure.Domain.EventBus.Events;
 using PersonDiary.Person.Domain.Business.Services;
 using PersonDiary.Person.Dto;
 using System.Threading.Tasks;

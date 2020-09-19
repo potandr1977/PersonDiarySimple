@@ -9,18 +9,6 @@ services:
      networks:
        - mynetwork
 
-  rabbitmq:
-     image: rabbitmq:3.8.3-management
-     ports:
-       - "5674:5672"
-       - "15674:15672"
-     container_name: personsimplerabbitmq
-     environment:
-       - RABBITMQ_DEFAULT_USER=admin
-       - RABBITMQ_DEFAULT_PASS=admin
-     networks:
-       - mynetwork
-
   pgserver:
      image: postgres
      restart: always
@@ -40,7 +28,6 @@ services:
        context: .
        dockerfile: PersonDiary.Person.WebApi/Dockerfile
      depends_on:
-       - "rabbitmq"
        - "pgserver"
        - "persondiary.lifeevent.webapi"
      networks:
@@ -52,7 +39,6 @@ services:
        context: .
        dockerfile: PersonDiary.LifeEvent.WebApi/Dockerfile
      depends_on:
-       - "rabbitmq"
        - "pgserver"
        - "redis"
      networks:

@@ -69,9 +69,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.Lifeevent.ApiCl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "obsolete", "obsolete", "{A45E7C33-D4AC-41FE-B052-C3E6AE6E10A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.Person.DataAccess.PostgreSQL", "PersonDiary.Person.DataAccess.PostgreSQL\PersonDiary.Person.DataAccess.PostgreSQL.csproj", "{F5D6CF6A-F4D4-45BB-8027-1B00B5903401}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.Person.DataAccess.Sqlite", "PersonDiary.Person.DataAccess.PostgreSQL\PersonDiary.Person.DataAccess.Sqlite.csproj", "{F5D6CF6A-F4D4-45BB-8027-1B00B5903401}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.Lifeevent.DataAccess.PostgreSQL", "PersonDiary.Lifeevent.DataAccess.PostgreSQL\PersonDiary.Lifeevent.DataAccess.PostgreSQL.csproj", "{238B22DF-748F-4E91-821D-18BEE89BA5B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDiary.Lifeevent.DataAccess.Sqlite", "PersonDiary.Lifeevent.DataAccess.PostgreSQL\PersonDiary.Lifeevent.DataAccess.Sqlite.csproj", "{238B22DF-748F-4E91-821D-18BEE89BA5B7}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3253C691-0941-41FA-8005-47536943E841}"
 EndProject
