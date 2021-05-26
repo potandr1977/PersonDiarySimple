@@ -26,6 +26,7 @@ services:
      restart: always
      ports:
        - 5432:5432
+     container_name: personsimplepostgres
      environment:
        - POSTGRES_USER=app
        - POSTGRES_PASSWORD=app
